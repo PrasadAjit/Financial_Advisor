@@ -71,3 +71,5 @@ Investment Advisor: Recommends low-, mid-, or high-risk portfolios based on your
 📲 Build a mobile-friendly version with React Native or Flutter
 
 🧾 Enable PDF report generation for financial summaries
+
+In this project you needs to run the app.py file in command prompt like python app.py 
