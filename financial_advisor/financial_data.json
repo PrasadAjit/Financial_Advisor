@@ -1,0 +1,77 @@
+{
+    "Prasad N": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "balance": 700.0,
+        "expenses": [
+            {
+                "amount": 100.0,
+                "category": "food",
+                "description": "",
+                "date": "2025-03-22 13:31:47"
+            },
+            {
+                "amount": 200.0,
+                "category": "tea",
+                "description": "",
+                "date": "2025-03-22 13:32:08"
+            }
+        ],
+        "income": [],
+        "budget": {}
+    },
+    "Sammed": {
+        "password": "c1c86a053faed0ecdd01c8b8c4a73acfc7b9831f01248706542e565349ecda30",
+        "balance": 2900.0,
+        "expenses": [
+            {
+                "amount": 100.0,
+                "category": "tea",
+                "description": "tea",
+                "date": "2025-03-22 13:52:11"
+            }
+        ],
+        "income": [
+            {
+                "amount": 2000.0,
+                "source": "job",
+                "description": "job",
+                "date": "2025-03-22 13:52:28"
+            }
+        ],
+        "budget": {}
+    },
+    "sagar": {
+        "password": "a8c386c28eb760904960f3290feff87bb3b16de4225e4938628e800ae112f8e5",
+        "balance": 7040.0,
+        "expenses": [
+            {
+                "amount": 200.0,
+                "category": "tea",
+                "description": "tea",
+                "date": "2025-03-22 14:01:16"
+            }
+        ],
+        "income": [
+            {
+                "amount": 240.0,
+                "source": "job",
+                "description": "job",
+                "date": "2025-03-22 14:01:38"
+            },
+            {
+                "amount": 5000.0,
+                "source": "agriculture",
+                "description": "farm",
+                "date": "2025-03-22 14:02:12"
+            }
+        ],
+        "budget": {}
+    },
+    "Prasad": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "balance": 1000.0,
+        "expenses": [],
+        "income": [],
+        "budget": {}
+    }
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Financial Advisor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+        .sidebar button:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Virtual Financial Advisor</h1>
+    </div>
+
+    <!-- Login/Register Section -->
+    <div id="login-register" class="main-content">
+        <h2>Login / Register</h2>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password">
+        </div>
+        <div class="form-group">
+            <label for="initial_balance">Initial Balance (for registration):</label>
+            <input type="number" id="initial_balance" placeholder="Enter initial balance">
+        </div>
+        <button class="button" onclick="register()">Register</button>
+        <button class="button" onclick="login()">Login</button>
+        <div id="login-register-message" class="message"></div>
+    </div>
+
+    <!-- Dashboard Section (Hidden by Default) -->
+    <div id="dashboard" class="hidden">
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <button onclick="showAddExpense()">Add Expense</button>
+                <button onclick="showAddIncome()">Add Income</button>
+                <button onclick="showSetBudget()">Set Budget</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h2>Dashboard</h2>
+                <button class="button" onclick="viewBalance()">View Balance</button>
+                <button class="button" onclick="viewExpenses()">View Expenses</button>
+                <button class="button" onclick="viewIncome()">View Income</button>
+                <button class="button" onclick="viewBudget()">View Budget</button>
+                <div id="dashboard-message" class="message"></div>
+
+                <!-- Add Expense Form (Hidden by Default) -->
+                <div id="add-expense-form" class="hidden">
+                    <h3>Add Expense</h3>
+                    <div class="form-group">
+                        <label for="expense-amount">Amount:</label>
+                        <input type="number" id="expense-amount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category">Category:</label>
+                        <input type="text" id="expense-category" placeholder="Enter category">
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-description">Description:</label>
+                        <input type="text" id="expense-description" placeholder="Enter description">
+                    </div>
+                    <button class="button" onclick="addExpense()">Add Expense</button>
+                    <div id="expense-message" class="message"></div>
+                </div>
+
+                <!-- Add Income Form (Hidden by Default) -->
+                <div id="add-income-form" class="hidden">
+                    <h3>Add Income</h3>
+                    <div class="form-group">
+                        <label for="income-amount">Amount:</label>
+                        <input type="number" id="income-amount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="income-source">Source:</label>
+                        <input type="text" id="income-source" placeholder="Enter source">
+                    </div>
+                    <div class="form-group">
+                        <label for="income-description">Description:</label>
+                        <input type="text" id="income-description" placeholder="Enter description">
+                    </div>
+                    <button class="button" onclick="addIncome()">Add Income</button>
+                    <div id="income-message" class="message"></div>
+                </div>
+
+                <!-- Set Budget Form (Hidden by Default) -->
+                <div id="set-budget-form" class="hidden">
+                    <h3>Set Budget</h3>
+                    <div class="form-group">
+                        <label for="budget-category">Category:</label>
+                        <input type="text" id="budget-category" placeholder="Enter category">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget-amount">Amount:</label>
+                        <input type="number" id="budget-amount" placeholder="Enter amount">
+                    </div>
+                    <button class="button" onclick="setBudget()">Set Budget</button>
+                    <div id="budget-message" class="message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions to interact with the Flask backend
+        async function register() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const initialBalance = document.getElementById('initial_balance').value;
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${username}&password=${password}&initial_balance=${initialBalance}`,
+            });
+
+            const data = await response.json();
+            showMessage('login-register-message', data.message, data.success);
+        }
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${username}&password=${password}`,
+            });
+
+            const data = await response.json();
+            showMessage('login-register-message', data.message, data.success);
+
+            if (data.success) {
+                document.getElementById('login-register').classList.add('hidden');
+                document.getElementById('dashboard').classList.remove('hidden');
+            }
+        }
+
+        async function logout() {
+            const response = await fetch('/logout', {
+                method: 'POST',
+            });
+
+            const data = await response.json();
+            showMessage('dashboard-message', data.message, data.success);
+
+            if (data.success) {
+                document.getElementById('login-register').classList.remove('hidden');
+                document.getElementById('dashboard').classList.add('hidden');
+                hideAllForms();
+            }
+        }
+
+        function showAddExpense() {
+            hideAllForms();
+            document.getElementById('add-expense-form').classList.remove('hidden');
+        }
+
+        function showAddIncome() {
+            hideAllForms();
+            document.getElementById('add-income-form').classList.remove('hidden');
+        }
+
+        function showSetBudget() {
+            hideAllForms();
+            document.getElementById('set-budget-form').classList.remove('hidden');
+        }
+
+        function hideAllForms() {
+            document.getElementById('add-expense-form').classList.add('hidden');
+            document.getElementById('add-income-form').classList.add('hidden');
+            document.getElementById('set-budget-form').classList.add('hidden');
+        }
+
+        async function addExpense() {
+            const amount = document.getElementById('expense-amount').value;
+            const category = document.getElementById('expense-category').value;
+            const description = document.getElementById('expense-description').value;
+
+            const response = await fetch('/add_expense', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `amount=${amount}&category=${category}&description=${description}`,
+            });
+
+            const data = await response.json();
+            showMessage('expense-message', data.message, data.success);
+        }
+
+        async function addIncome() {
+            const amount = document.getElementById('income-amount').value;
+            const source = document.getElementById('income-source').value;
+            const description = document.getElementById('income-description').value;
+
+            const response = await fetch('/add_income', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `amount=${amount}&source=${source}&description=${description}`,
+            });
+
+            const data = await response.json();
+            showMessage('income-message', data.message, data.success);
+        }
+
+        async function setBudget() {
+            const category = document.getElementById('budget-category').value;
+            const amount = document.getElementById('budget-amount').value;
+
+            const response = await fetch('/set_budget', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `category=${category}&amount=${amount}`,
+            });
+
+            const data = await response.json();
+            showMessage('budget-message', data.message, data.success);
+        }
+
+        async function viewBalance() {
+            const response = await fetch('/view_balance');
+            const data = await response.json();
+            if (data.success) {
+                showMessage('dashboard-message', `Current Balance: $${data.balance}`, true);
+            } else {
+                showMessage('dashboard-message', data.message, false);
+            }
+        }
+
+        async function viewExpenses() {
+            const response = await fetch('/view_expenses');
+            const data = await response.json();
+            if (data.success) {
+                showMessage('dashboard-message', `Expenses: ${JSON.stringify(data.expenses)}`, true);
+            } else {
+                showMessage('dashboard-message', data.message, false);
+            }
+        }
+
+        async function viewIncome() {
+            const response = await fetch('/view_income');
+            const data = await response.json();
+            if (data.success) {
+                showMessage('dashboard-message', `Income: ${JSON.stringify(data.income)}`, true);
+            } else {
+                showMessage('dashboard-message', data.message, false);
+            }
+        }
+
+        async function viewBudget() {
+            const response = await fetch('/view_budget');
+            const data = await response.json();
+            if (data.success) {
+                showMessage('dashboard-message', `Budget: ${JSON.stringify(data.budget)}`, true);
+            } else {
+                showMessage('dashboard-message', data.message, false);
+            }
+        }
+
+        function showMessage(elementId, message, isSuccess) {
+            const messageElement = document.getElementById(elementId);
+            messageElement.textContent = message;
+            messageElement.className = `message ${isSuccess ? 'success' : 'error'}`;
+        }
+    </script>
+</body>
+</html>
